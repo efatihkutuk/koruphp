@@ -15,14 +15,13 @@
     <input type="password" name="password" placeholder="Password" required>
     <button type="submit">Login</button>
 </form>
-<button id="google-btn" type="button">Login with Google</button>
+<div id="g_id_onload"
+     data-client_id="<?= htmlspecialchars($googleClientId) ?>"
+     data-login_uri="/google-callback"
+     data-ux_mode="popup">
+</div>
+<div class="g_id_signin" data-type="standard"></div>
 <pre id="message"></pre>
-<script>
-  document.getElementById('google-btn').addEventListener('click', function () {
-    fetch('/google-login?token=test-google-token')
-      .then(r => r.text())
-      .then(t => document.getElementById('message').textContent = t);
-  });
-</script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </body>
 </html>

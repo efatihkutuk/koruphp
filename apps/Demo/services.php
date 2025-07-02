@@ -12,7 +12,10 @@ return function (Container $container, array $config): void {
     });
 
     $container->set(AuthService::class, function () use ($container, $config) {
-        return new AuthService($container->get(UserRepository::class), $config['google_token']);
+        return new AuthService(
+            $container->get(UserRepository::class),
+            $config['google_client_id']
+        );
     });
 
     $container->set(View::class, function () {

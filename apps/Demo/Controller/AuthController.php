@@ -12,7 +12,9 @@ class AuthController
 
     public function form(): string
     {
-        return $this->view->render('login.php');
+        return $this->view->render('login.php', [
+            'googleClientId' => $this->auth->getGoogleClientId(),
+        ]);
     }
 
     public function login(): string
@@ -26,11 +28,12 @@ class AuthController
         return 'Invalid credentials';
     }
 
-    public function google(): string
+    public function googleCallback(): string
     {
-        $token = $_GET['token'] ?? '';
-        if ($this->auth->googleAuthenticate($token)) {
-            $_SESSION['user'] = 'google';
+        $token = $_POST['credential'] ?? '';
+        $email = $this->auth->googleAuthenticate($token);
+        if ($email) {
+            $_SESSION['user'] = $email;
             return 'Logged in with Google';
         }
         return 'Google authentication failed';

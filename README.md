@@ -12,7 +12,9 @@ composer install
 
 2. Copy `.env.example` to `.env` and adjust the settings if required.
 
-3. Initialise the SQLite database (creates `data/app.sqlite`):
+Ensure a MySQL database named `koruphp` exists and is accessible with the `root` user.
+
+3. Initialise the MySQL database (ensure MySQL is running on `localhost:3306` with user `root` and an empty password):
 
 ```bash
 php setup.php
@@ -28,7 +30,7 @@ Browse to `http://localhost:8080/login` to sign in with the demo credentials (`a
 
 ## Configuration
 
-Settings are loaded from `.env` and fall back to values in `config/config.php`. The default setup uses a local SQLite file and expects the Google token `test-google-token`.
+Settings are loaded from `.env` and fall back to values in `config/config.php`. The default setup connects to a MySQL database named `koruphp` on `localhost` using the `root` user. Set `KORUPHP_GOOGLE_CLIENT_ID` to your Google OAuth client ID so that the login button works.
 
 ## Directory Structure
 

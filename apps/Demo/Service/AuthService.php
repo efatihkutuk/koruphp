@@ -5,7 +5,7 @@ use Apps\Demo\Repository\UserRepository;
 
 class AuthService
 {
-    public function __construct(private UserRepository $users, private string $googleToken)
+    public function __construct(private UserRepository $users, private string $googleClientId)
     {
     }
 
@@ -18,8 +18,26 @@ class AuthService
         return hash('sha256', $password) === $user['password'];
     }
 
-    public function googleAuthenticate(string $token): bool
+    public function googleAuthenticate(string $token): ?string
     {
-        return $token === $this->googleToken;
+        if ($token === '') {
+            return null;
+        }
+
+        $info = @file_get_contents('https://oauth2.googleapis.com/tokeninfo?id_token=' . urlencode($token));
+        if ($info === false) {
+            return null;
+        }
+        $data = json_decode($info, true);
+        if (!$data || ($data['aud'] ?? '') !== $this->googleClientId) {
+            return null;
+        }
+        return $data['email'] ?? ($data['sub'] ?? null);
+    }
+
+    public function getGoogleClientId(): string
+    {
+        return $this->googleClientId;
     }
 }
+
