@@ -1,12 +1,11 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use KoruPHP\Application;
-use KoruPHP\Controller\HelloController;
+use Apps\Demo\Controller\HomeController;
 
-$app = new Application();
+$app = require __DIR__ . '/../src/KoruPHP/bootstrap.php';
 
-$controller = new HelloController();
-$app->addRoute('GET', '/', [$controller, 'index']);
+$home = new HomeController();
+$app->addRoute('GET', '/', [$home, 'index']);
 
 $app->run();

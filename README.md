@@ -1,6 +1,6 @@
 # KoruPHP
 
-KoruPHP is a lightweight PHP framework inspired by modern frameworks but designed to stay simple and extendable. It ships with a minimal router and supports building apps with controllers, middleware, and services.
+KoruPHP is a lightweight PHP framework inspired by modern frameworks while remaining easy to extend. It supports controllers, middleware, services, repositories, simple token authentication and templating.
 
 ## Getting Started
 
@@ -16,13 +16,15 @@ composer install
 php -S localhost:8080 -t public
 ```
 
-Visit `http://localhost:8080` and you should see the "Hello from KoruPHP!" message.
+Access `http://localhost:8080` and provide the header `Authorization: Bearer secret` to see the demo page.
 
 ## Directory Structure
 
-- `src/` – framework source files.
-- `public/` – entry point for web requests.
-- `config/` – configuration files.
-- `apps/` – place your applications here.
+- `src/` – framework source files
+- `config/` – configuration files
+- `public/` – web entry point
+- `apps/` – place your applications here
 
-This repository currently contains a minimal skeleton and is open for further development.
+## Extending
+
+KoruPHP ships with a very small core so that you can easily add new libraries or features such as Redis. Create additional services and middleware and register them in `src/KoruPHP/bootstrap.php`.
