@@ -8,4 +8,5 @@ return [
         'pass' => getenv('KORUPHP_DB_PASS') ?: '',
     ],
     'auth_token' => getenv('KORUPHP_TOKEN') ?: 'secret',
+    'google_token' => getenv('KORUPHP_GOOGLE_TOKEN') ?: 'test-google-token',
 ];

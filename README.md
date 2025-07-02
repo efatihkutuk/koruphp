@@ -16,7 +16,12 @@ composer install
 php -S localhost:8080 -t public
 ```
 
+The demo uses an in-memory SQLite database created automatically on first run.
+For Google login the expected token can be changed via the `KORUPHP_GOOGLE_TOKEN` environment variable.
+
 Access `http://localhost:8080` and provide the header `Authorization: Bearer secret` to see the demo page.
+
+Visit `/login` to authenticate using the built in demo user (`admin` / `secret`) or try the Google demo by hitting `/google-login?token=test-google-token`.
 
 ## Directory Structure
 
