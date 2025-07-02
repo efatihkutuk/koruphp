@@ -19,4 +19,5 @@ return function (Application $app): void {
     $app->addRoute('GET', '/login', [$auth, 'form']);
     $app->addRoute('POST', '/login', [$auth, 'login']);
     $app->addRoute('POST', '/google-callback', [$auth, 'googleCallback']);
+    $app->addRoute('GET', '/logout', [$auth, 'logout']);
 };

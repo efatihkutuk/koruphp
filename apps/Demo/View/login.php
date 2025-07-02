@@ -10,6 +10,9 @@
 </head>
 <body>
 <h1>Login</h1>
+<?php if (isset($_SESSION['user'])): ?>
+<p>You are logged in as <?= htmlspecialchars($_SESSION['user']) ?>. <a href="/">Go to home</a></p>
+<?php endif; ?>
 <form method="POST" action="/login">
     <input type="text" name="username" placeholder="Username" required>
     <input type="password" name="password" placeholder="Password" required>

@@ -26,11 +26,23 @@ php setup.php
 php -S localhost:8080 -t public
 ```
 
-Browse to `http://localhost:8080/login` to sign in with the demo credentials (`admin` / `secret`) or click the Google login button. After authentication you can view the protected home page at `http://localhost:8080`.
+Browse to `http://localhost:8080/login` to sign in. The demo user credentials are:
+
+```
+username: admin
+password: secret
+```
+
+You can also click the Google login button. After authentication you can view the
+protected home page at `http://localhost:8080`.
 
 ## Configuration
 
-Settings are loaded from `.env` and fall back to values in `config/config.php`. The default setup connects to a MySQL database named `koruphp` on `localhost` using the `root` user. Set `KORUPHP_GOOGLE_CLIENT_ID` to your Google OAuth client ID so that the login button works.
+Settings are loaded from `.env` and fall back to values in `config/config.php`. The
+default setup connects to a MySQL database named `koruphp` on `localhost` using the
+`root` user. Set `KORUPHP_GOOGLE_CLIENT_ID` to your Google OAuth client ID so that the
+login button works. Session data is stored in the database table `sessions` so your
+users remain logged in even after server restarts.
 
 ## Directory Structure
 
@@ -42,9 +54,28 @@ Settings are loaded from `.env` and fall back to values in `config/config.php`. 
 
 ## Creating Applications
 
-Each subdirectory of `apps/` represents an application. Add a `services.php` file to register services with the container and a `routes.php` file to configure routes. Both files return a callback that receives the container or application instance.
+Each subdirectory of `apps/` represents an application. Add a `services.php` file to
+register services with the container and a `routes.php` file to configure routes.
+Both files return a callback that receives the container or application instance.
 
-Controllers, services, repositories and views live under the app directory just like the `Demo` example. When you add a new app with these files it becomes available automatically – no further bootstrap changes are required.
+Controllers, services, repositories and views live under the app directory just
+like the `Demo` example. A typical layout is:
+
+```
+apps/
+  MyApp/
+    Controller/
+    Service/
+    Repository/
+    View/
+    services.php
+    routes.php
+```
+
+Define your controllers under `Controller/`, business logic in `Service/` classes and
+database access in `Repository/`. Register these in `services.php` and expose HTTP
+endpoints via `routes.php`. When you add a new app with these files it becomes
+available automatically – no further bootstrap changes are required.
 
 ## Extending Further
 
