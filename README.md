@@ -10,13 +10,15 @@ KoruPHP is a lightweight framework that borrows ideas from modern PHP stacks whi
 composer install
 ```
 
-2. Initialise the SQLite database (creates `data/app.sqlite`):
+2. Copy `.env.example` to `.env` and adjust the settings if required.
+
+3. Initialise the SQLite database (creates `data/app.sqlite`):
 
 ```bash
 php setup.php
 ```
 
-3. Launch the development server:
+4. Launch the development server:
 
 ```bash
 php -S localhost:8080 -t public
@@ -26,7 +28,7 @@ Browse to `http://localhost:8080/login` to sign in with the demo credentials (`a
 
 ## Configuration
 
-Settings are stored in `config/config.php` and can be overridden via environment variables. By default a local SQLite file is used and the expected Google token is `test-google-token`.
+Settings are loaded from `.env` and fall back to values in `config/config.php`. The default setup uses a local SQLite file and expects the Google token `test-google-token`.
 
 ## Directory Structure
 
@@ -36,17 +38,12 @@ Settings are stored in `config/config.php` and can be overridden via environment
 - `public/` – web entry point
 - `data/` – database files (ignored in git)
 
-## Creating Components
+## Creating Applications
 
-The framework relies on simple PHP classes:
+Each subdirectory of `apps/` represents an application. Add a `services.php` file to register services with the container and a `routes.php` file to configure routes. Both files return a callback that receives the container or application instance.
 
-- **Controllers** handle web requests. They receive their dependencies via the container. See `apps/Demo/Controller` for examples.
-- **Services** contain business logic and can be shared between controllers. Register them in `src/KoruPHP/bootstrap.php`.
-- **Repositories** wrap database access. The demo `UserRepository` also seeds the database on first run.
-- **Views** are basic PHP templates rendered through `KoruPHP\View\View`.
-
-Add your own classes following these patterns and wire them up in `bootstrap.php`.
+Controllers, services, repositories and views live under the app directory just like the `Demo` example. When you add a new app with these files it becomes available automatically – no further bootstrap changes are required.
 
 ## Extending Further
 
-KoruPHP intentionally keeps the core small. You can easily introduce new middleware or libraries such as Redis by registering additional services in the bootstrap file.
+KoruPHP intentionally keeps the core small. You can easily introduce new middleware or libraries such as Redis by registering additional services in `services.php`.

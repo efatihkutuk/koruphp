@@ -7,8 +7,11 @@ $user = $config['db']['user'];
 $pass = $config['db']['pass'];
 
 $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-$sql = file_get_contents(__DIR__ . '/apps/Demo/setup.sql');
-$pdo->exec($sql);
+
+foreach (glob(__DIR__ . '/apps/*/setup.sql') as $file) {
+    $sql = file_get_contents($file);
+    $pdo->exec($sql);
+}
 
 echo "Database initialized at {$dsn}\n";
 ?>
