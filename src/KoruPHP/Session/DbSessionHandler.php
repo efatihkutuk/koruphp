@@ -30,8 +30,12 @@ class DbSessionHandler implements SessionHandlerInterface
 
     public function write($id, $data): bool
     {
-        $stmt = $this->pdo->prepare('REPLACE INTO sessions (id, data, last_activity) VALUES (?, ?, ?)');
-        return $stmt->execute([$id, $data, time()]);
+        $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+        $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        $page = strtok($_SERVER['REQUEST_URI'] ?? '', '?');
+        $user = $_SESSION['user'] ?? null;
+        $stmt = $this->pdo->prepare('REPLACE INTO sessions (id, user, ip, user_agent, last_page, data, last_activity) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        return $stmt->execute([$id, $user, $ip, $ua, $page, $data, time()]);
     }
 
     public function destroy($id): bool

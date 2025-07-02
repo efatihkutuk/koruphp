@@ -36,13 +36,17 @@ password: secret
 You can also click the Google login button. After authentication you can view the
 protected home page at `http://localhost:8080`.
 
+Visit `http://localhost:8080/sessions` (requires authentication) to see a table of
+active sessions including IP address, last visited page and activity time.
+
 ## Configuration
 
 Settings are loaded from `.env` and fall back to values in `config/config.php`. The
 default setup connects to a MySQL database named `koruphp` on `localhost` using the
 `root` user. Set `KORUPHP_GOOGLE_CLIENT_ID` to your Google OAuth client ID so that the
 login button works. Session data is stored in the database table `sessions` so your
-users remain logged in even after server restarts.
+users remain logged in even after server restarts. Each entry records the user name,
+IP address, user agent, last visited page and last activity time.
 
 ## Directory Structure
 

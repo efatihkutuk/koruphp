@@ -5,6 +5,10 @@ CREATE TABLE IF NOT EXISTS users (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE IF NOT EXISTS sessions (
     id VARCHAR(128) PRIMARY KEY,
+    user VARCHAR(255) NULL,
+    ip VARCHAR(45) NULL,
+    user_agent TEXT NULL,
+    last_page TEXT NULL,
     data TEXT NOT NULL,
     last_activity INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
