@@ -1,34 +1,52 @@
 # KoruPHP
 
-KoruPHP is a lightweight PHP framework inspired by modern frameworks while remaining easy to extend. It supports controllers, middleware, services, repositories, simple token authentication and templating.
+KoruPHP is a lightweight framework that borrows ideas from modern PHP stacks while staying easy to extend. It supports controllers, middleware, services, repositories and simple templating.
 
 ## Getting Started
 
-1. Install dependencies using [Composer](https://getcomposer.org/):
+1. Install dependencies with [Composer](https://getcomposer.org/):
 
 ```bash
 composer install
 ```
 
-2. Start the development server:
+2. Initialise the SQLite database (creates `data/app.sqlite`):
+
+```bash
+php setup.php
+```
+
+3. Launch the development server:
 
 ```bash
 php -S localhost:8080 -t public
 ```
 
-The demo uses an in-memory SQLite database created automatically on first run.
-For Google login the expected token can be changed via the `KORUPHP_GOOGLE_TOKEN` environment variable.
+Browse to `http://localhost:8080/login` to sign in with the demo credentials (`admin` / `secret`) or click the Google login button. After authentication you can view the protected home page at `http://localhost:8080`.
 
-Visit `/login` to authenticate using the built in demo user (`admin` / `secret`) or try the Google demo with `/google-login?token=test-google-token`.
-After logging in (or by providing the header `Authorization: Bearer secret`) you can access the protected home page at `http://localhost:8080`.
+## Configuration
+
+Settings are stored in `config/config.php` and can be overridden via environment variables. By default a local SQLite file is used and the expected Google token is `test-google-token`.
 
 ## Directory Structure
 
-- `src/` – framework source files
+- `src/` – framework source
+- `apps/` – your applications
 - `config/` – configuration files
 - `public/` – web entry point
-- `apps/` – place your applications here
+- `data/` – database files (ignored in git)
 
-## Extending
+## Creating Components
 
-KoruPHP ships with a very small core so that you can easily add new libraries or features such as Redis. Create additional services and middleware and register them in `src/KoruPHP/bootstrap.php`.
+The framework relies on simple PHP classes:
+
+- **Controllers** handle web requests. They receive their dependencies via the container. See `apps/Demo/Controller` for examples.
+- **Services** contain business logic and can be shared between controllers. Register them in `src/KoruPHP/bootstrap.php`.
+- **Repositories** wrap database access. The demo `UserRepository` also seeds the database on first run.
+- **Views** are basic PHP templates rendered through `KoruPHP\View\View`.
+
+Add your own classes following these patterns and wire them up in `bootstrap.php`.
+
+## Extending Further
+
+KoruPHP intentionally keeps the core small. You can easily introduce new middleware or libraries such as Redis by registering additional services in the bootstrap file.

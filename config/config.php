@@ -3,7 +3,7 @@ return [
     'env' => getenv('KORUPHP_ENV') ?: 'production',
     'debug' => getenv('KORUPHP_DEBUG') === 'true',
     'db' => [
-        'dsn' => getenv('KORUPHP_DSN') ?: 'sqlite::memory:',
+        'dsn' => getenv('KORUPHP_DSN') ?: 'sqlite:' . __DIR__ . '/../data/app.sqlite',
         'user' => getenv('KORUPHP_DB_USER') ?: '',
         'pass' => getenv('KORUPHP_DB_PASS') ?: '',
     ],
