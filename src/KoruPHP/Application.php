@@ -22,6 +22,11 @@ class Application
         return $this->container;
     }
 
+    public function getConfig(): array
+    {
+        return $this->config;
+    }
+
     public function addRoute(string $method, string $path, callable $handler, array $middlewares = []): void
     {
         $this->routes[] = [$method, $path, $handler, $middlewares];

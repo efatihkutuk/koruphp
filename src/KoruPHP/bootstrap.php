@@ -1,7 +1,6 @@
 <?php
 use KoruPHP\Application;
 use KoruPHP\Database\Connection;
-use KoruPHP\Auth\TokenAuthMiddleware;
 use KoruPHP\Middleware\DebugMiddleware;
 use KoruPHP\Middleware\SessionMiddleware;
 use Apps\Demo\Repository\UserRepository;
@@ -31,6 +30,5 @@ $container->set(View::class, function () {
 
 $app->addMiddleware(new DebugMiddleware($config['debug']));
 $app->addMiddleware(new SessionMiddleware());
-$app->addMiddleware(new TokenAuthMiddleware($config['auth_token']));
 
 return $app;
