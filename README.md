@@ -14,7 +14,7 @@ composer install
 
 Ensure a MySQL database named `koruphp` exists and is accessible with the `root` user.
 
-3. Initialise the MySQL database (ensure MySQL is running on `localhost:3306` with user `root` and an empty password):
+3. Initialise the MySQL database (ensure MySQL is running on `localhost:3306` with user `root` and an empty password). This drops any existing demo tables and recreates them so you can rerun it whenever the schema changes:
 
 ```bash
 php setup.php
