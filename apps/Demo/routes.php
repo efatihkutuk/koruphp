@@ -12,7 +12,7 @@ return function (Application $app): void {
     $container = $app->getContainer();
     $config = $app->getConfig();
     $token = new TokenAuthMiddleware($config['auth_token']);
-    $home = new HomeController();
+    $home = new HomeController($container->get(\Apps\Demo\Service\GreetingService::class), $view);
     $view = $container->get(View::class);
     $authService = $container->get(AuthService::class);
     $auth = new AuthController($authService, $view);

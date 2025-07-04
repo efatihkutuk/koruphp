@@ -13,12 +13,12 @@ class UserController
     public function list(): string
     {
         $users = $this->repo->findAll();
-        return $this->view->render('users_list.php', ['users' => $users]);
+        return $this->view->render('users_list.twig', ['users' => $users, 'session' => $_SESSION]);
     }
 
     public function createForm(): string
     {
-        return $this->view->render('user_form.php', ['user' => null, 'action' => '/users/create']);
+        return $this->view->render('user_form.twig', ['user' => null, 'action' => '/users/create', 'session' => $_SESSION]);
     }
 
     public function create(): string
@@ -37,7 +37,7 @@ class UserController
         $id = (int)($_GET['id'] ?? 0);
         $user = $this->repo->findById($id);
         if (!$user) { http_response_code(404); return 'User not found'; }
-        return $this->view->render('user_form.php', ['user' => $user, 'action' => '/users/edit']);
+        return $this->view->render('user_form.twig', ['user' => $user, 'action' => '/users/edit', 'session' => $_SESSION]);
     }
 
     public function edit(): string

@@ -2,6 +2,8 @@
 use Apps\Demo\Repository\UserRepository;
 use Apps\Demo\Repository\SessionRepository;
 use Apps\Demo\Service\AuthService;
+use Apps\Demo\Service\GreetingService;
+use KoruPHP\View\TwigView;
 use KoruPHP\View\View;
 use KoruPHP\Core\Container;
 
@@ -23,7 +25,11 @@ return function (Container $container, array $config): void {
         );
     });
 
+    $container->set(GreetingService::class, function () {
+        return new GreetingService();
+    });
+
     $container->set(View::class, function () {
-        return new View(__DIR__.'/View');
+        return new TwigView(__DIR__.'/View');
     });
 };

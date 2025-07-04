@@ -1,6 +1,6 @@
 # KoruPHP
 
-KoruPHP is a lightweight framework that borrows ideas from modern PHP stacks while staying easy to extend. It supports controllers, middleware, services, repositories and simple templating.
+KoruPHP is a lightweight framework that borrows ideas from modern PHP stacks while staying easy to extend. It supports controllers, middleware, services and repositories. Views are rendered with the [Twig](https://twig.symfony.com/) template engine so you can build clean UIs with reusable layouts.
 
 ## Getting Started
 
@@ -26,12 +26,16 @@ php setup.php
 php -S localhost:8080 -t public
 ```
 
+The demo uses Twig templates under `apps/Demo/View` and the styles defined in
+`public/css/style.css` for a simple responsive layout.
+
 Browse to `http://localhost:8080/login` to sign in. The demo user credentials are:
 
 ```
 username: admin
 password: secret
 ```
+These credentials are inserted automatically when you run `php setup.php`.
 
 You can also click the Google login button. After authentication you can view the
 protected home page at `http://localhost:8080`.
@@ -89,6 +93,11 @@ Define your controllers under `Controller/`, business logic in `Service/` classe
 database access in `Repository/`. Register these in `services.php` and expose HTTP
 endpoints via `routes.php`. When you add a new app with these files it becomes
 available automatically – no further bootstrap changes are required.
+
+The demo app registers multiple repositories and services – for example `UserRepository`
+and `SessionRepository` for database access plus `AuthService` and `GreetingService`.
+You can declare as many services as you need and fetch them from the container
+inside your controllers.
 
 ## Extending Further
 
