@@ -1,6 +1,6 @@
 # KoruPHP
 
-KoruPHP is a lightweight framework that borrows ideas from modern PHP stacks while staying easy to extend. It supports controllers, middleware, services and repositories. Views are rendered with the [Twig](https://twig.symfony.com/) template engine so you can build clean UIs with reusable layouts.
+KoruPHP is a lightweight framework that borrows ideas from modern PHP stacks while staying easy to extend. It supports controllers, middleware, services and repositories. Views are rendered using simple PHP templates for a clean UI without external dependencies.
 
 ## Getting Started
 
@@ -26,7 +26,7 @@ php setup.php
 php -S localhost:8080 -t public
 ```
 
-The demo uses Twig templates under `apps/Demo/View` and the styles defined in
+The demo uses plain PHP templates under `apps/Demo/View` and the styles defined in
 `public/css/style.css` for a simple responsive layout.
 
 Browse to `http://localhost:8080/login` to sign in. The demo user credentials are:

@@ -12,7 +12,7 @@ class AuthController
 
     public function form(): string
     {
-        return $this->view->render('login.twig', [
+        return $this->view->render('login.php', [
             'googleClientId' => $this->auth->getGoogleClientId(),
             'session' => $_SESSION
         ]);

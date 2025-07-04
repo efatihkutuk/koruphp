@@ -7,8 +7,8 @@
 <body>
     <header>KoruPHP Demo</header>
     <div class="container">
-    <h1>{{ message }}</h1>
-    <p>Logged in as {{ session.user|default('guest') }} | <a href="/logout">Logout</a></p>
+    <h1><?= htmlspecialchars($message) ?></h1>
+    <p>Logged in as <?= htmlspecialchars($session['user'] ?? 'guest') ?> | <a href="/logout">Logout</a></p>
     </div>
 </body>
 </html>

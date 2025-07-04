@@ -13,6 +13,6 @@ class HomeController
     public function index(): string
     {
         $message = $this->greeting->greet($_SESSION['user'] ?? 'Guest');
-        return $this->view->render('home.twig', ['message' => $message, 'session' => $_SESSION]);
+        return $this->view->render('home.php', ['message' => $message, 'session' => $_SESSION]);
     }
 }

@@ -13,6 +13,6 @@ class SessionController
     public function list(): string
     {
         $sessions = $this->repo->findAll();
-        return $this->view->render('sessions.twig', ['sessions' => $sessions, 'session' => $_SESSION]);
+        return $this->view->render('sessions.php', ['sessions' => $sessions, 'session' => $_SESSION]);
     }
 }

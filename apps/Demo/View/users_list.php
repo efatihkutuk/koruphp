@@ -12,16 +12,16 @@
 <p><a href="/users/create">Add User</a> | <a href="/">Home</a></p>
 <table>
     <tr><th>ID</th><th>Username</th><th class="actions">Actions</th></tr>
-    {% for u in users %}
+    <?php foreach ($users as $u): ?>
         <tr>
-            <td>{{ u.id }}</td>
-            <td>{{ u.username }}</td>
+            <td><?= htmlspecialchars($u['id']) ?></td>
+            <td><?= htmlspecialchars($u['username']) ?></td>
             <td class="actions">
-                <a href="/users/edit?id={{ u.id }}">Edit</a>
-                <a href="/users/delete?id={{ u.id }}" onclick="return confirm('Delete user?');">Delete</a>
+                <a href="/users/edit?id=<?= htmlspecialchars($u['id']) ?>">Edit</a>
+                <a href="/users/delete?id=<?= htmlspecialchars($u['id']) ?>" onclick="return confirm('Delete user?');">Delete</a>
             </td>
         </tr>
-    {% endfor %}
+    <?php endforeach; ?>
 </table>
 </div>
 </body>
