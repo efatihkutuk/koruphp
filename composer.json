@@ -1,0 +1,17 @@
+{
+  "name": "koruphp/koruphp",
+  "description": "A lightweight modern PHP framework for building apps with middleware, controllers, services, repositories, and templates.",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.1",
+    "twig/twig": "^3.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "KoruPHP\\": "src/KoruPHP/",
+      "Apps\\": "apps/"
+    }
+  },
+  "require-dev": {}
+}
