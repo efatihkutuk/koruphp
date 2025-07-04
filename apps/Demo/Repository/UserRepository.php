@@ -33,4 +33,37 @@ class UserRepository
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ?: null;
     }
+
+    public function findById(int $id): ?array
+    {
+        $stmt = $this->pdo->prepare('SELECT id, username FROM users WHERE id = ?');
+        $stmt->execute([$id]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user ?: null;
+    }
+
+    public function create(string $username, string $password): void
+    {
+        $hash = hash('sha256', $password);
+        $stmt = $this->pdo->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
+        $stmt->execute([$username, $hash]);
+    }
+
+    public function update(int $id, string $username, ?string $password = null): void
+    {
+        if ($password !== null && $password !== '') {
+            $hash = hash('sha256', $password);
+            $stmt = $this->pdo->prepare('UPDATE users SET username = ?, password = ? WHERE id = ?');
+            $stmt->execute([$username, $hash, $id]);
+        } else {
+            $stmt = $this->pdo->prepare('UPDATE users SET username = ? WHERE id = ?');
+            $stmt->execute([$username, $id]);
+        }
+    }
+
+    public function delete(int $id): void
+    {
+        $stmt = $this->pdo->prepare('DELETE FROM users WHERE id = ?');
+        $stmt->execute([$id]);
+    }
 }

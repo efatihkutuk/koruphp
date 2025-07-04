@@ -39,6 +39,15 @@ protected home page at `http://localhost:8080`.
 Visit `http://localhost:8080/sessions` (requires authentication) to see a table of
 active sessions including IP address, last visited page and activity time.
 
+You can also manage users via a simple CRUD interface:
+
+```
+http://localhost:8080/users        # list users
+http://localhost:8080/users/create # add a user
+```
+
+Editing and deleting are available from the list view. Authentication is required for all user management pages.
+
 ## Configuration
 
 Settings are loaded from `.env` and fall back to values in `config/config.php`. The

@@ -3,10 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Login</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 2em; }
-        form { margin-bottom: 1em; }
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <h1>Login</h1>

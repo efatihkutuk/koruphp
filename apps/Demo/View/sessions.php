@@ -3,10 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Sessions</title>
-    <style>
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ccc; padding: 4px; }
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <h1>Active Sessions</h1>
